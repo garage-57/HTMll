@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Организация 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: #1a1d21;
+            color: #b3b3b3;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 20px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .logo-icon {
+            background-color: #ffffff;
+            color: #1a1d21;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-item:hover {
+            background-color: #2a2d32;
+            color: #ffffff;
+        }
+
+        .nav-item.active {
+            background-color: #0d6efd; /* Синий цвет */
+            color: #ffffff;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+
+        /* Нижняя часть меню (Профиль, Выход, Пользователь) */
+        .user-section {
+            margin-top: auto;
+            padding: 0 10px;
+        }
+
+        .profile-menu {
+            background-color: #2a2d32;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .profile-menu-item {
+            padding: 12px 16px;
+            color: #e0e0e0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .profile-menu-item:hover {
+            background-color: #3a3d42;
+        }
+
+        .profile-menu-item:first-child {
+            border-bottom: 1px solid #3a3d42;
+        }
+
+        .current-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            border-top: 1px solid #3a3d42;
+            margin: 0 -10px;
+        }
+
+        .current-user img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+
+        .content {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 500;
+            color: #1a1d21;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #6c757d;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        /* Сетка для карточек */
+        .products-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Карточка товара */
+        .product-card {
+            width: 260px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-header {
+            background-color: #f8f9fa;
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+            color: #1a1d21;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .product-body {
+            padding: 24px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-price {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1a1d21;
+            margin-bottom: 16px;
+        }
+
+        .product-features {
+            font-size: 13px;
+            color: #495057;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #ffffff;
+            color: #0d6efd;
+            border: 1px solid #0d6efd;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-buy:hover {
+            background-color: #0d6efd;
+            color: #ffffff;
+        }
+        .form-container button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            text-align: left;
+            margin-left: 20px; /* Отступ под фиксированный сайдбар */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+
+        }
+        .my-input {
+    width: 300px;
+    color: black;
+    background-color: black;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+}
+   .my-input {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            .products-grid {
+            display: flex;
+            justify-content: left;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .container-1 {margin-left: 280px; /* Отступ под фиксированный сайдбар */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;}
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            Меню
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="home.html" class="nav-item "><i class="bi bi-house-door-fill"></i> Главная</a></li>
+                <li><a href="category.html" class="nav-item"><i class="bi bi-tags"></i> Категории</a></li>
+                <li><a href="orders.html" class="nav-item"><i class="bi bi-grid-3x3-gap"></i> Заказы</a></li>
+                <li><a href="contacts.html" class="nav-item active "><i class="bi bi-person"></i> Контакты</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-section">
+            <div class="profile-menu">
+                <div class="profile-menu-item">Профиль</div>
+                <div class="profile-menu-item">Выход</div>
+            </div>
+
+            <div class="current-user">
+                <!-- Заглушка для аватара пользователя -->
+                <img src="https://api.dicebear.com/10.x/line-face/svg?backgroundColor=e3d2b4&inkColor=4a3526" alt="User">
+                <span>Пользователь</span>
+                <i class="bi bi-caret-down-fill" style="font-size: 10px; margin-left: auto;"></i>
+            </div>
+        </div>
+    </aside>
+
+<main class="content">
+        <h1 class="page-title">Контакты</h1>
+        <p class="page-subtitle"></p>
+
+        <div class="products-grid">
+
+<div class="form-container">
+    <form>
+        <input type="text" placeholder="Имя" class="my-input" />
+        <input type="email" placeholder="e-mail" class="my-input" />
+        <textarea placeholder="Сообщение" class="my-input"></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+   </div>
+    <form>
+        <div class="container-1">
+  <div><h3>Наши контакты.<h3></div>
+            <div> Наш раздел «Контакты» - это полноценный рабочий инструмент для любого из посетителей интернет-магазина.<div/>
+<div>В раздел можно перейти из самого верхнего меню сайта или из футера <div/>
+</div>
+    </form>
+   </div>
+
+</body>
+</html>
+
